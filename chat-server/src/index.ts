@@ -1,17 +1,46 @@
+import { parseJsonText } from "typescript";
 import type { WebSocket } from "ws";
 import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port : 3000});
 
-const allSockets : WebSocket[] = [];
+interface User {
+    [roomId : string] : WebSocket[]
+}
+
+let allSockets : User = {}
 
 wss.on("connection",(socket)=>{
-    allSockets.push(socket);
+    socket.on("message",(message)=>{
 
-    socket.on("message", (e)=>{
-        console.log(e.toString());
-        allSockets.forEach(s => {
-            s.send(e.toString() + ":sent from server")
-        })
+        const parsedMessage = JSON.parse(message as unknown as string)
+
+        if(parsedMessage.type === "join"){
+            const roomId = parsedMessage.payload.roomId;
+            if(!allSockets[roomId]){
+                allSockets[roomId] = []
+            }
+
+            allSockets[roomId].push(socket);
+            console.log(allSockets)
+        }
+
+        if(parsedMessage.type === "chat"){
+
+            let currentRoom = "";
+            for (const roomId in allSockets){
+                if(allSockets[roomId]?.includes(socket)){
+                    currentRoom = roomId;
+                    break;
+                }
+            }
+
+            if(!currentRoom) return;
+            
+            allSockets[currentRoom]?.forEach(sock =>{
+                sock.send(JSON.stringify(parsedMessage.payload.message))
+            })
+                
+        }
     })
 })  
