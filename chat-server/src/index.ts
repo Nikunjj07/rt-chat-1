@@ -38,7 +38,7 @@ wss.on("connection",(socket)=>{
             if(!currentRoom) return;
             
             allSockets[currentRoom]?.forEach(sock =>{
-                sock.send(JSON.stringify(parsedMessage.payload.message))
+                sock.send(parsedMessage.payload.message)
             })
                 
         }
