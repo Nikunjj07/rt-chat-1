@@ -18,7 +18,6 @@ export function SocketProvider( {children} : {children : ReactNode} ){
     const [messages,setMessages] = useState(["welcome to this chat","welcome to this chat"])
 
     useEffect(()=>{
-        document.documentElement.classList.add("dark")
         const socket = new WebSocket("ws://localhost:3000")
         setWs(socket);
     
@@ -32,6 +31,7 @@ export function SocketProvider( {children} : {children : ReactNode} ){
                     setMessages((prev) => [...prev, data.payload.message]);
                     break
                 case "join":
+
                     break
             }
         }
@@ -44,7 +44,7 @@ export function SocketProvider( {children} : {children : ReactNode} ){
       },[])
       const sendMessage = (message: string) => {
             if (ws && ws.readyState === WebSocket.OPEN) {
-                ws.send(JSON.stringify({ type: "chat", message }));
+                ws.send(JSON.stringify({ type: "chat", payload:{message}}));
             }
       };
 

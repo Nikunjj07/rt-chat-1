@@ -8,10 +8,24 @@ export function useSocket(){
             console.log("socket not present")
             return
         }else{
-            sendMessage(data)
+            socket.sendMessage(data)
         }
     }
 
-    return { socket, sendMessage}
+    const joinRoom = (data: string)=>{
+        if (!socket.ws){
+            console.log("socket not present")
+            return
+        }else{
+            socket.ws.send(JSON.stringify({
+                type: "join",
+                payload:{
+                    roomId : data
+                }
+            }))
+        }
+    }
+
+    return { socket, sendMessage, joinRoom}
 
 }
