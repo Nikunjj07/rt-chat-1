@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { JoinRoom } from './pages/join';
@@ -7,46 +7,6 @@ import { ChatRoom } from './pages/chatRoom';
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [messages,setMessages] = useState(["welcome to this chat"])
-  const wsRef = useRef<WebSocket>(null);
-
-
-  function sendMessage(){
-    if (!wsRef.current){
-      console.log("socket not present")
-      return
-    }
-    const message = inputRef.current?.value || ""
-    const SendMessage = JSON.stringify({
-      type: "chat",
-      payload:{
-        message: message
-      }
-    })
-    wsRef.current.send(SendMessage)
-  }
-
-  useEffect(()=>{
-    document.documentElement.classList.add("dark")
-    const ws = new WebSocket("ws://localhost:3000")
-    ws.onmessage = (event)=>{
-      setMessages( m => [...m, event.data])
-    }
-    wsRef.current = ws;
-
-    ws.onopen = ()=>{
-      ws.send(JSON.stringify({
-        type: "join",
-        payload: {
-          roomId: "123" //hardcoded rn
-        }
-      }))
-    }
-
-    return ()=>{
-      ws.close()
-    }
-  },[])
 
   return (
     <div>

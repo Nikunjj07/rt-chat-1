@@ -1,10 +1,11 @@
 import { NavBar } from "../components/Navbar"
+import { useSocketContext } from "../context/SocketProvider"
+import { useSocket } from "../hooks/useSocket";
 
 export const JoinRoom = ()=>{
-
-    function RoomLogic(){
-        return //add
-    }
+    const { ws, messages } = useSocketContext();
+    const { sendMessage } =useSocket();
+    
 
     return(
         <div className="bg-black flex flex-col h-screen">
@@ -21,7 +22,7 @@ export const JoinRoom = ()=>{
                             focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring 
                             transition"/>
                             <br />
-                            <button onClick={RoomLogic} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg">Join</button>
+                            <button  className="bg-primary text-primary-foreground px-4 py-2 rounded-lg">Join</button>
                         </div>
                     </div>
                 </div>
