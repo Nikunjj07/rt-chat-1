@@ -9,9 +9,8 @@ export const NavBar = ()=>{
         </div>
 
         <div className="hidden md:flex items-center gap-6 text-sm text-foreground">
-        <a href="#" className="hover:text-primary transition">Home</a>
-        <a href="#" className="hover:text-primary transition">Rooms</a>
-        <a href="#" className="hover:text-primary transition">Leaderboard</a>
+        <a href="/" className="hover:text-primary transition">Home</a>
+        <a href="/chat" className="hover:text-primary transition">Rooms</a>
         </div>
 
         <div className="flex items-center gap-3">

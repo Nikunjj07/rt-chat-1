@@ -31,12 +31,12 @@ export const ChatRoom = ()=>{
                             </div>
                         </div>
                         <div className="p-5 flex justify-center flex-row ">
-                            <input type="text" ref={inputRef} id="roomId" placeholder="Hello There!" className="bg-input h-[5vh]  w-full px-3 py-2 rounded border border-input bg-background text-foreground 
-                            placeholder:text-muted-foreground 
+                            <input type="text" ref={inputRef} id="roomId" placeholder="Hello There!" className="h-[5vh]  w-full px-3 py-2 rounded border border-input bg-input/30 text-muted-foreground 
+                            placeholder: text-card-foreground 
                             focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring 
                             transition"/>
                             <br />
-                            <button onClick={MessageLogic} className="bg-primary text-primary-foreground px-4 py-2 rounded">Join</button>
+                            <button onClick={MessageLogic} className="bg-primary text-primary-foreground px-4 py-2 rounded">Send</button>
                         </div>
                     </div>
                 </div>

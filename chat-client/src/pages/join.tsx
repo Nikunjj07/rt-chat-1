@@ -23,9 +23,11 @@ export const JoinRoom = ()=>{
                     <div className="bg-card text-foreground rounded-lg shadow-md w-[50vh] h-[50vh] flex flex-col items-center justify-center">
                         <h2 className="text-2xl font-semibold">Create /Join Room</h2>
                         <div className="w-[40vh] h-[40vh] flex justify-center flex-col">
+                            <h1 className="font-semibold">Enter Room Id</h1>
+                            <br />
                             <input onChange={(e)=>{
                                 setRoomId(e.currentTarget.value)
-                            }} type="text" id="roomId" placeholder="RoomId" className="bg-input h-[5vh]  w-full px-3 py-2 rounded-md border border-input bg-background text-foreground 
+                            }} type="text" id="roomId" placeholder="RoomId" className="h-[5vh]  w-full px-3 py-2 rounded-md border border-input bg-input/30 text-muted-foreground 
                             placeholder:text-muted-foreground 
                             focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring 
                             transition"/>
