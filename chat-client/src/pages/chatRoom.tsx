@@ -21,9 +21,9 @@ export const ChatRoom = ()=>{
                 <div className="flex w-full items-center justify-center">
                     <div className="bg-card text-foreground rounded-lg shadow-md w-[100vh] h-[80vh] flex flex-col p-5 ">
                         <h2 className="text-2xl font-semibold">Room</h2>
-                        <div className="border border-ring h-full rounded-lg p-5">
+                        <div className="border border-ring h-full rounded-lg p-5 overflow-y-auto">
                             <div className="">
-                                {messages.map(message => <div className='break-words max-w-xs px-4 py-2 mt-2 rounded-xl bg-primary text-primary-foreground'>
+                                {messages.map((message, i) => <div key={i} className='break-words max-w-xs px-4 py-2 mt-2 rounded-xl bg-primary text-primary-foreground'>
                                    <span>
                                      {message}
                                    </span>

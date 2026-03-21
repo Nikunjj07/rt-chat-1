@@ -15,7 +15,7 @@ const SocketContext = createContext<SocketContextType>({
 
 export function SocketProvider( {children} : {children : ReactNode} ){
     const [ws, setWs] = useState<WebSocket | null>(null)
-    const [messages,setMessages] = useState(["welcome to this chat","welcome to this chat"])
+    const [messages,setMessages] = useState(["welcome to this chat"])
 
     useEffect(()=>{
         const socket = new WebSocket("ws://localhost:3000")
@@ -26,12 +26,13 @@ export function SocketProvider( {children} : {children : ReactNode} ){
         }
         socket.onmessage = (e)=>{
             const data = JSON.parse(e.data)
+            console.log(e.data)
+            console.log("parsed")
+            console.log(data)
             switch (data.type){
                 case "chat":
                     setMessages((prev) => [...prev, data.payload.message]);
-                    break
-                case "join":
-
+                    console.log(messages)
                     break
             }
         }

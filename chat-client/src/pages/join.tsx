@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { NavBar } from "../components/Navbar"
 import { useSocket } from "../hooks/useSocket";
+import { useNavigate } from "react-router-dom";
 
 export const JoinRoom = ()=>{
     const [roomId, setRoomId] = useState("");
     const { joinRoom } =useSocket();
+    const navigate = useNavigate()
     
     function sendJoinRoom(){
         joinRoom(roomId)
+        navigate("/chat")
     }
 
     return(
